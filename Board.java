@@ -19,4 +19,14 @@ public class Board {
             System.out.println();
         }
     }
+
+    public void dropToken(int column, char symbol){
+        //Gravity logic
+        for(int i = ROWS-1; i >= 0; i++){
+            if(array[i][column] == ' '){
+                array[i][column] = symbol;
+                break;
+            }
+        }
+    }
 }

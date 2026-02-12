@@ -5,14 +5,22 @@ public class Main{
 
         Scanner scanner = new Scanner(System.in);
         Board board = new Board();
-        
+        Player p1 = new Player("Tom", 'T');
+        Player p2 = new Player("Jerry", 'J');
+
         board.printBoard();
-        //board.dropToken(0, 'x');
-        //board.dropToken(1, 'y');
-        //board.printBoard();
+
+        Player currentPlayer = p1;
 
         while(true){
-            System.out.print("Enter a column (-1 to end): ");
+            System.out.println(currentPlayer.getPlayerName() + "'s turn");
+            System.out.print("Enter a column (0-5) OR -1 to end: ");
+
+            //Discard bad input
+            if(!scanner.hasNextInt()){
+                scanner.next();
+                continue;
+            }
             int input = Integer.valueOf(scanner.nextLine());
 
             if(input == -1){
@@ -20,10 +28,16 @@ public class Main{
             }
 
             if(board.isValidMove(input)){
-                board.dropToken(input, 'X');
+                board.dropToken(input, currentPlayer.getPlayerSymbol());
                 board.printBoard();
+
+                if(currentPlayer == p1){
+                    currentPlayer = p2;
+                }else{
+                    currentPlayer = p1;
+                }
             } else{
-                System.out.println("Invalid column!");
+                System.out.println("Invalid move!");
             }
             
         }

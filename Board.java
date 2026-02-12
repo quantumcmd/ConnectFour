@@ -22,11 +22,23 @@ public class Board {
 
     public void dropToken(int column, char symbol){
         //Gravity logic
-        for(int i = ROWS-1; i >= 0; i++){
-            if(array[i][column] == ' '){
-                array[i][column] = symbol;
-                break;
+        if(isValidMove(column)){
+            for(int i = ROWS-1; i >= 0; i--){
+                if(array[i][column] == ' '){
+                    array[i][column] = symbol;
+                    break;
+                }
             }
         }
+    }
+
+    public boolean isValidMove(int column){
+        if(column < 0 || column >= COLS){
+            return false;
+        }
+        if(array[0][column] != ' '){
+            return false;
+        }
+        return true;
     }
 }

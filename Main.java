@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main{
+public class Main {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
@@ -21,7 +21,7 @@ public class Main{
                 scanner.next();
                 continue;
             }
-            int input = Integer.valueOf(scanner.nextLine());
+            int input = scanner.nextInt();
 
             if(input == -1){
                 break;
@@ -30,6 +30,13 @@ public class Main{
             if(board.isValidMove(input)){
                 board.dropToken(input, currentPlayer.getPlayerSymbol());
                 board.printBoard();
+                if(board.hasWinner(currentPlayer.getPlayerSymbol())){
+                    System.out.println("CONGRATULATIONS!!! " + currentPlayer.getPlayerName() + " HAS WON!!!");
+                    break;
+                } else if(board.isBoardFull()){
+                    System.out.println("TIE");
+                    break;
+                }
 
                 if(currentPlayer == p1){
                     currentPlayer = p2;
@@ -41,5 +48,6 @@ public class Main{
             }
             
         }
+        scanner.close();
     }
 }

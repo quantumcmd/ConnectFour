@@ -9,6 +9,8 @@ A fully playable, console-based Connect-4 game written in Java. This project was
 3. Compile the code: `javac *.java`
 4. Run the game: `java Main`
 
+## System Architecture & OOP Design
+
 - **`Main.java`**: The entry point of the program.
 - **`UserInterface.java`**: Handles the game loop, taking input from the `Scanner`, and printing responses. It connects the players to the board.
 - **`Board.java`**: Manages the state of the 2D array (`char[][]`). It encapsulates the array (keeping it private) and handles the "gravity" logic when dropping a token.
